@@ -6,19 +6,41 @@ public class Warehouse {
 	
 	int locationX;
 	int locationY;
-	ArrayList<Integer> types;
+	ArrayList<Product> products;
 	ArrayList<Integer> quantity;
+	int ID;
 	
 	
 	
-	public Warehouse(int locationX, int locationY, ArrayList<Integer> types,
-			ArrayList<Integer> quantity) {
+	public Warehouse(int locationX, int locationY, ArrayList<Product> products,
+			ArrayList<Integer> quantity, int iD) {
 		super();
 		this.locationX = locationX;
 		this.locationY = locationY;
-		this.types = types;
+		this.products = products;
 		this.quantity = quantity;
+		ID = iD;
 	}
+
+	
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	public int getLocationX() {
 		return locationX;
 	}
@@ -31,12 +53,7 @@ public class Warehouse {
 	public void setLocationY(int locationY) {
 		this.locationY = locationY;
 	}
-	public ArrayList<Integer> getTypes() {
-		return types;
-	}
-	public void setTypes(ArrayList<Integer> types) {
-		this.types = types;
-	}
+	
 	public ArrayList<Integer> getQuantity() {
 		return quantity;
 	}

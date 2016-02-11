@@ -5,19 +5,19 @@ import java.util.ArrayList;
 public class Order {
 
 	int locationX;
-	int locationY;
-	ArrayList<Integer> types;
-	ArrayList<Integer> quantity;
+	int locationY; 
+	ArrayList<Product> products;
+	ArrayList<Integer> quantities;
+	
 	boolean done;
 	
 	
-	public Order(int locationX, int locationY, ArrayList<Integer> types,
-			ArrayList<Integer> quantity, boolean done) {
+	public Order(int locationX, int locationY,ArrayList<Product> products, ArrayList<Integer> quantities, boolean done) {
 		super();
 		this.locationX = locationX;
 		this.locationY = locationY;
-		this.types = types;
-		this.quantity = quantity;
+		this.products=products;
+		this.quantities=quantities;
 		this.done = done;
 	}
 	public int getLocationX() {
@@ -32,17 +32,18 @@ public class Order {
 	public void setLocationY(int locationY) {
 		this.locationY = locationY;
 	}
-	public ArrayList<Integer> getTypes() {
-		return types;
+	public ArrayList<Product> getProducts() {
+		return products;
 	}
-	public void setTypes(ArrayList<Integer> types) {
-		this.types = types;
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
 	}
-	public ArrayList<Integer> getQuantity() {
-		return quantity;
+	
+	public ArrayList<Integer> getQuantities() {
+		return quantities;
 	}
-	public void setQuantity(ArrayList<Integer> quantity) {
-		this.quantity = quantity;
+	public void setQuantities(ArrayList<Integer> quantities) {
+		this.quantities = quantities;
 	}
 	public boolean isDone() {
 		return done;

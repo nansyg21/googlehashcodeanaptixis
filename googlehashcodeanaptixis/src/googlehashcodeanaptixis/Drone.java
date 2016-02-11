@@ -9,11 +9,13 @@ public class Drone {
 	ArrayList<Integer> quantity;
 	int locationX;
 	int locationY;
+	boolean free;
+	int payloadAvailable;
 	
 	
 	
 	public Drone(int payload, int id, ArrayList<Integer> types,
-			ArrayList<Integer> quantity, int locationX, int locationY) {
+			ArrayList<Integer> quantity, int locationX, int locationY,int payloadAvailable) {
 		super();
 		this.payload = payload;
 		this.id = id;
@@ -21,8 +23,36 @@ public class Drone {
 		this.quantity = quantity;
 		this.locationX = locationX;
 		this.locationY = locationY;
+		this.free=true;
+		this.payloadAvailable=payloadAvailable;
 	}
 	
+	
+	
+	public int getPayloadAvailable() {
+		return payloadAvailable;
+	}
+
+
+
+	public void setPayloadAvailable(int payloadAvailable) {
+		this.payloadAvailable = payloadAvailable;
+	}
+
+
+
+	public boolean isFree() {
+		return free;
+	}
+
+
+
+	public void setFree(boolean free) {
+		this.free = free;
+	}
+
+
+
 	public int getPayload() {
 		return payload;
 	}
