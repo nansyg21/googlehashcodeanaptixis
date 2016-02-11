@@ -11,11 +11,12 @@ public class Drone {
 	int locationY;
 	boolean free;
 	int payloadAvailable;
+	int droneTurns;
 	
 	
 	
 	public Drone(int payload, int id, ArrayList<Integer> types,
-			ArrayList<Integer> quantity, int locationX, int locationY,int payloadAvailable) {
+			ArrayList<Integer> quantity, int locationX, int locationY,int payloadAvailable, int droneTurns) {
 		super();
 		this.payload = payload;
 		this.id = id;
@@ -25,10 +26,23 @@ public class Drone {
 		this.locationY = locationY;
 		this.free=true;
 		this.payloadAvailable=payloadAvailable;
+		this.droneTurns=droneTurns;
 	}
 	
 	
 	
+	public int getDroneTurns() {
+		return droneTurns;
+	}
+
+
+
+	public void setDroneTurns(int droneTurns) {
+		this.droneTurns = droneTurns;
+	}
+
+
+
 	public int getPayloadAvailable() {
 		return payloadAvailable;
 	}

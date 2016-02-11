@@ -1,12 +1,18 @@
 package googlehashcodeanaptixis;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeliverySchedule {
+	public static int TotalTurns;
 
 	ArrayList<Drone> drones;
 	ArrayList<Order> orders;
 	ArrayList<Warehouse> warehouses;
+	ArrayList<String> Commands;
 
 	int totalTurns;
 	int totalRows;
@@ -18,7 +24,7 @@ public class DeliverySchedule {
 
 	public DeliverySchedule(ArrayList<Drone> drones, ArrayList<Order> orders,
 			ArrayList<Warehouse> warehouses, int totalTurns, int totalRows,
-			int totalColumns) {
+			int totalColumns, ArrayList<String> Commands) {
 		super();
 		this.drones = drones;
 		this.orders = orders;
@@ -26,6 +32,7 @@ public class DeliverySchedule {
 		this.totalTurns = totalTurns;
 		this.totalRows = totalRows;
 		this.totalColumns = totalColumns;
+		this.Commands=Commands;
 	}
 
 	public int FindTurns(int sourceX, int sourceY, int destX, int destY)
@@ -49,6 +56,7 @@ public class DeliverySchedule {
 		int tempWeight=0;
 		int dronePayload;
 		int totalWeight=0;
+		int droneId=0;
 
 		for(Drone d: drones)
 		{
@@ -85,14 +93,22 @@ public class DeliverySchedule {
 				}
 				if(tempTotal<bestTurn)
 				{
-					bestTurn=tempTotal;
+					if(d.droneTurns-tempTotal>0)
+					{
+						bestTurn=tempTotal;
+						droneId=d.id;
+						d.setDroneTurns(d.droneTurns-tempTotal);
+						writeLoadUnload("solution"+1+".in",0,'L',1,2,3,Commands);
+					}
+					
+					
 				}
 			}
 		}
-		
-		//Load
-		//Deliver
-
+		System.out.println("aaa");
+		writeLoadUnload("solution"+0+".in",0,'L',1,2,3,Commands);
+		 
+		finalizeFileSol("solution"+0+".in",Commands);
 	}
 
 	public boolean CheckAvailability(Warehouse w, int type, int quantity)
@@ -118,19 +134,11 @@ public class DeliverySchedule {
 
 		return false;
 	}*/
-	/*public void FillOrder(Order o)
+	public void FillOrder(Order o)
 	{
-		int type=0;
-		ArrayList<Integer> quantities=o.getQuantities();
-
-		for(int q: quantities)
-		{
-			if(q>0)
-				CalculateNearestWarehouse(type, q, o);
-			type++;
-		}
+		
 	}
-*/
+
 
 	//	public int CalculateNearestWarehouse(Order o)
 	//	{
@@ -248,6 +256,55 @@ public class DeliverySchedule {
 	}
 
 
+	public static void writeLoadUnload(String filename, int drone, char command, int warehouse, int productType, int cap, ArrayList<String> commands )
+	{
+		 
+		commands.add(  drone+" " +command+" "+warehouse+" " +productType +" "+cap+ System.getProperty("line.separator") );
+ 
+	}
+	
+	
+	public static void writeDeliver(String filename, int drone, int order, int productType, int cap,ArrayList<String> commands )
+	{
+	 
+		commands.add( drone+" D " +order+" " +productType +" "+cap+ System.getProperty("line.separator"));
+	}
+	
+	
+	public static void writeWait(String filename, int drone, int turns,ArrayList<String> commands )
+	{
+	 
+			commands.add( drone+" W " +turns + System.getProperty("line.separator"));
+
+	}
+	
+
+	public static void finalizeFileSol(String filename, ArrayList<String> commands  )//counts commands and writes total at front
+	{
+		
+		File fileOut = new File(filename);
+		FileWriter writer;
+		try {
+			writer = new FileWriter(fileOut,true);
+			BufferedWriter bWriter = new BufferedWriter(writer);
+			bWriter.append(commands.size()+ System.getProperty("line.separator"));
+			
+			
+			for(int j=0;j<commands.size();j++) //2 LIENS FOR EACH WAREHOUSES
+				bWriter.append(commands.get(j)  );
+
+			bWriter.flush();
+			bWriter.close();
+			writer.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+	}
+	
+	
 
 
 
