@@ -5,15 +5,26 @@ import java.util.ArrayList;
 public class Drone {
 	int payload;
 	int id;
-	ArrayList<Integer> types;
-	ArrayList<Integer> quantity;
+	ArrayList<Integer> types=new ArrayList<Integer>();
+	ArrayList<Integer> quantity= new ArrayList<Integer>();
 	int locationX;
 	int locationY;
 	boolean free;
 	int payloadAvailable;
 	int droneTurns;
 	
-	
+	public Drone(int payload, int id, int locationX, int locationY,int payloadAvailable, int droneTurns) {
+		super();
+		this.payload = payload;
+		this.id = id;
+		this.types = types;
+		this.quantity = quantity;
+		this.locationX = locationX;
+		this.locationY = locationY;
+		this.free=true;
+		this.payloadAvailable=payloadAvailable;
+		this.droneTurns=droneTurns;
+	}
 	
 	public Drone(int payload, int id, ArrayList<Integer> types,
 			ArrayList<Integer> quantity, int locationX, int locationY,int payloadAvailable, int droneTurns) {

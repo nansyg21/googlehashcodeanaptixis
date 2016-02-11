@@ -25,6 +25,7 @@ public class Main {
 		ArrayList<Order> ordersList  = new ArrayList<Order>();
 		ArrayList<Product> productList = new ArrayList<Product>();
 		ArrayList<String> Commands = new ArrayList<String>();
+		ArrayList<Drone> Drones = new ArrayList<Drone>();
 	//	DeliverySchedule ds = new DeliverySchedule(drones, orders, warehouses, totalTurns, totalRows, totalColumns, Commands)
 		
 		try 
@@ -133,6 +134,14 @@ public class Main {
 				    ordersList.add(new Order(xOrd, yOrd, warehouseTypes, quantity, false));
 				    
 				}
+				
+				//create drones
+				for(int j=0;j<DRONES;j++) 
+				{	
+					Drones.add(new Drone(MAXPAYLOAD,j,warehouseList.get(0).locationX,warehouseList.get(0).locationY,MAXPAYLOAD,TURNS));
+
+				}
+				
  
 				
 			}
